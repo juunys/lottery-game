@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_25_022717) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_25_104807) do
   create_table "drawn_games", force: :cascade do |t|
     t.integer "game_type_id", null: false
     t.text "numbers"
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_25_022717) do
     t.string "numbers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "has_drawn", default: false
     t.index ["game_type_id"], name: "index_lottery_games_on_game_type_id"
   end
 
