@@ -1,0 +1,78 @@
+@media (min-width: 992px) {
+  .brand {
+    background-color: #404dff;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .brand .btn i {
+    color: #494b74;
+  }
+  .brand .btn .svg-icon svg g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+    fill: #fff;
+  }
+  .brand .btn .svg-icon svg:hover g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+  }
+  .brand .btn.active .svg-icon svg g [fill], .brand .btn:hover .svg-icon svg g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+    fill: #af58fb;
+  }
+  .brand .btn.active .svg-icon svg:hover g [fill], .brand .btn:hover .svg-icon svg:hover g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+  }
+  .brand .btn.active i, .brand .btn:hover i {
+    color: #af58fb;
+  }
+}
+@media (max-width: 991.98px) {
+  .header-mobile {
+    background-color: #404dff;
+  }
+  .header-mobile .burger-icon span {
+    background-color: #fff;
+  }
+  .header-mobile .burger-icon span::before, .header-mobile .burger-icon span::after {
+    background-color: #fff;
+  }
+  .header-mobile .burger-icon:hover span {
+    background-color: #af58fb;
+  }
+  .header-mobile .burger-icon:hover span::before, .header-mobile .burger-icon:hover span::after {
+    background-color: #af58fb;
+  }
+  .header-mobile .burger-icon-active span {
+    background-color: #af58fb;
+  }
+  .header-mobile .burger-icon-active span::before, .header-mobile .burger-icon-active span::after {
+    background-color: #af58fb;
+  }
+  .header-mobile .btn i {
+    color: #fff;
+  }
+  .header-mobile .btn .svg-icon svg g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+    fill: #fff;
+  }
+  .header-mobile .btn .svg-icon svg:hover g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+  }
+  .header-mobile .btn.active .svg-icon svg g [fill], .header-mobile .btn:hover .svg-icon svg g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+    fill: #af58fb;
+  }
+  .header-mobile .btn.active .svg-icon svg:hover g [fill], .header-mobile .btn:hover .svg-icon svg:hover g [fill] {
+    -webkit-transition: fill 0.3s ease;
+    transition: fill 0.3s ease;
+  }
+  .header-mobile .btn.active i, .header-mobile .btn:hover i {
+    color: #af58fb;
+  }
+}
