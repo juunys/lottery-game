@@ -30,6 +30,9 @@
                     <h3 class="card-title align-items-start flex-column">
                       <span class="card-label font-weight-bolder text-dark">Jogos sorteados Lotofacil</span>
                     </h3>
+                    <button id="seed-games-button" class="btn btn-primary">
+                      Atualizar Jogos
+                    </button>
                   </div>
                   <!--end::Header-->
                   <!--begin::Body-->
@@ -76,6 +79,9 @@
                               <% end %>
                             </tbody>
                           </table>
+                        </div>
+                        <div class="pagination">
+                          <%= paginate @lotofacil_draw_games %>
                         </div>
                         <!--end::Table-->
                       </div>
@@ -142,3 +148,48 @@
     transform: scale(1.1); /* Aumenta levemente o tamanho no hover */
   }
 </style>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", () => {
+  const button = document.getElementById("seed-games-button");
+  const overlay = document.getElementById("loading-overlay");
+
+  button.addEventListener("click", async () => {
+    button.disabled = true; // Desativa o botão temporariamente
+    button.textContent = "Atualizando...";
+
+    overlay.style.display = "flex";
+
+
+    try {
+      const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+      console.log("csrf: ", csrf);
+
+      const response = await fetch("/draw_games/seed_lotofacil_games", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrf,
+        },
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert(`Jogos atualizados com sucesso! ${result.message}`);
+        window.location.reload();
+      } else {
+        const error = await response.json();
+        alert(`Erro: ${error.message}`);
+      }
+    } catch (err) {
+      alert("Ocorreu um erro ao atualizar os jogos.");
+      console.error(err);
+    } finally {
+      button.disabled = false; // Reativa o botão
+      button.textContent = "Atualizar Jogos";
+      overlay.style.display = "none";
+    }
+  });
+});
+
+</script>

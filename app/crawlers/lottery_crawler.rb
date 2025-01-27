@@ -13,12 +13,7 @@ class LotteryCrawler
 
     # Definir os headers e dados POST conforme o cURL fornecido
     headers = [
-      "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-      "Accept-Language: pt-BR,pt;q=0.9",
-      "Cache-Control: max-age=0",
-      "Connection: keep-alive",
       "Content-Type: application/x-www-form-urlencoded",
-      "Cookie: PHPSESSID=o3krbrl27188uv1ic8ct9h882s",  # Substitua pelo seu PHPSESSID
       "Origin: https://asloterias.com.br",
       "Referer: https://asloterias.com.br/download-todos-resultados-lotofacil",
       "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
@@ -57,19 +52,21 @@ class LotteryCrawler
 
     # Pular as 6 primeiras linhas e ir para a linha 7 (onde começa o cabeçalho)
     xlsx.default_sheet = xlsx.sheets.first # Seleciona a primeira planilha
-    xlsx.each_row_streaming(offset: 6) do |row|
-      # Verifica se a linha não está em branco
-      # A data do sorteio estará na segunda coluna e o concurso na primeira
-      draw = row[0].value
-      draw_date = row[1].value
+  	first_row_logged = false 
+    xlsx.each_row_streaming(offset: 5) do |row|
+      	# Verifica se a linha não está em branco
+      	# A data do sorteio estará na segunda coluna e o concurso na primeira
+      	draw = row[0]&.value
+      	draw_date = row[1]&.value
 
-      # Extrair os números sorteados (de "bola 1" até o máximo definido no game type)
-      numbers = row[2..game_type.max_number - 1].map(&:value)
+      	next unless draw.present? && draw_date.present?
 
-      # Armazenando o sorteio no array de resultados
-      results << { numbers: numbers, draw_date: draw_date, draw: draw }
+      	# Extrair os números sorteados (de "bola 1" até o máximo definido no game type)
+      	numbers = row[2..game_type.max_number - 1].map(&:value)
+
+    	# Armazenando o sorteio no array de resultados
+      	results << { numbers: numbers, draw_date: draw_date, draw: draw }
     end
-
     results
   end
 end

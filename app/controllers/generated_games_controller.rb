@@ -27,6 +27,10 @@ class GeneratedGamesController < ApplicationController
 	    redirect_to new_generated_game_path
 	end
 
+	def drawned
+		@lotofacil_draw_games = LotteryGame.where(game_type_id: GameType.find_by(code: "lotofacil").id, has_drawn: true).page(params[:page]).per(20)
+	end
+
 	def show
 
 	end

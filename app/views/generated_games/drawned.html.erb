@@ -20,7 +20,7 @@
         <div class="d-flex flex-column-fluid">
           <!--begin::Container-->
           <div class="container">
-
+            <!--begin::Dashboard-->
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-lg-12 col-xxl-12">
                 <!--begin::Advance Table Widget 4-->
@@ -28,8 +28,7 @@
                   <!--begin::Header-->
                   <div class="card-header border-0 py-5">
                     <h3 class="card-title align-items-start flex-column">
-                      <span class="card-label font-weight-bolder text-dark">Jogos</span>
-                      <span class="text-muted mt-3 font-weight-bold font-size-sm">Lotofacil</span>
+                      <span class="card-label font-weight-bolder text-dark">Meus jogos já sorteados Lotofacil</span>
                     </h3>
                   </div>
                   <!--end::Header-->
@@ -43,7 +42,10 @@
                             <thead class="thead-light">
                               <tr class="text-left text-uppercase">
                                 <th style="min-width: 100px" class="pl-7">
-                                  <span class="text-dark-75 font-weight-bold">Jogo</span>
+                                  <span class="text-dark-75 font-weight-bold">Concurso</span>
+                                </th>
+                                <th style="min-width: 100px" class="pl-7">
+                                  <span class="text-dark-75 font-weight-bold">Data</span>
                                 </th>
                                 <th style="min-width: 200px" class="pl-7">
                                   <span class="text-dark-75 font-weight-bold">Números</span>
@@ -51,24 +53,38 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <% @lotofacil.each_with_index do |ms, index| %> 
+                              <% if @lotofacil_draw_games.count > 0 %>
+                                <% @lotofacil_draw_games.each do |ms| %> 
+                                  <tr class="game-row">
+                                    <td>
+                                      <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                        <%= ms.draw %>
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                        <%= ms.draw_date.strftime("%d/%m/%Y") %>
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <div class="number-container">
+                                        <% ms.numbers.each do |number| %>
+                                          <div class="circle"><%= number %></div>
+                                        <% end %>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                <% end %>
+                              <% else %>
                                 <tr class="game-row">
-                                  <td>
-                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                      <%= index + 1 %>
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <div class="number-container">
-                                      <% JSON.parse(ms.numbers).each do |number| %>
-                                        <div class="circle"><%= number %></div>
-                                      <% end %>
-                                    </div>
-                                  </td>
+                                  <td>Nenhum jogo já sorteado</td>
                                 </tr>
                               <% end %>
                             </tbody>
                           </table>
+                        </div>
+                        <div class="pagination">
+                          <%= paginate @lotofacil_draw_games %>
                         </div>
                         <!--end::Table-->
                       </div>
@@ -98,7 +114,6 @@
   .table thead th {
     border-bottom: 2px solid #dee2e6;
   }
-
   /* Container dos números */
   .number-container {
     display: flex;

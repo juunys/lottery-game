@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# To Do
+- criar rotina para atualizar jogos sorteados
+- verificar se jogo já foi ou não sorteado
+- se já foi, marcar ele e gerar novo
 
-Things you may want to cover:
+- Barra de pesquisa nos jogos sorteados
+- Barra de pesquisa nos meus jogos
 
-* Ruby version
+- criar sistema de usuários
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Rotina para atualizar jogos
+rake lottery:seed_lotofacil

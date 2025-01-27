@@ -39,6 +39,9 @@ gem 'open-uri'
 
 gem 'roo'
 
+# Paginate
+gem 'kaminari'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
