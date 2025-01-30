@@ -1,7 +1,6 @@
 class GeneratedGamesController < ApplicationController
 	def index
-		@mega_sena = LotteryGame.where(game_type_id: GameType.find_by(code: "megasena").id)
-		@lotofacil = LotteryGame.where(game_type_id: GameType.find_by(code: "lotofacil").id)
+		@lotofacil = LotteryGame.where(game_type_id: GameType.find_by(code: "lotofacil").id, has_drawn: false)
 	end
 
 	def new
