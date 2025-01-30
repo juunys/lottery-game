@@ -30,6 +30,9 @@ class LotteryCrawler
       "-o", file_path.to_s  # Salvar o arquivo na pasta tmp
     ]
 
+    puts "Baixando arquivo..."
+    puts ""
+
     # Executar o comando curl
     stdout, stderr, status = Open3.capture3(*curl_command)
 
@@ -45,6 +48,9 @@ class LotteryCrawler
 
   # Método para processar o arquivo .xlsx
   def self.process_xlsx(filename, game_type)
+    puts ""
+    puts "extraindo..."
+    puts ""
     # Abrir o arquivo usando a gema Roo
     xlsx = Roo::Excelx.new(filename)
 

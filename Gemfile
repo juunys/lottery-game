@@ -42,6 +42,8 @@ gem 'roo'
 # Paginate
 gem 'kaminari'
 
+gem 'ruby-progressbar'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
